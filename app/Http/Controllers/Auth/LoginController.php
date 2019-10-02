@@ -36,4 +36,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\Views
+     */
+    public function showLoginForm()
+    {
+        return view('welcome');
+    }
 }
