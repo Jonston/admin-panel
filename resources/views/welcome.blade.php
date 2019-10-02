@@ -13,7 +13,7 @@
                                 <div class="form-group row">
                                     <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="email" class="form-control" name="email" required>
+                                        <input type="text" id="email" class="form-control" name="email" value="{{ old('email') }}" required>
                                         @error('email')
                                         <div class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
                                     <div class="col-md-6 offset-md-4">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="remember"> Remember Me
+                                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                             </label>
                                         </div>
                                     </div>
