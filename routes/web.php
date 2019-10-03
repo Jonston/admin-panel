@@ -28,5 +28,5 @@ Route::group([
 ], function(){
     Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'AdminController@index']);
 
-    Route::resource('company', 'CompanyController');
+    Route::resource('companies', 'CompanyController');
 });

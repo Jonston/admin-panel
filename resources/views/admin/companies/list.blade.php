@@ -7,6 +7,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+            <a href="{!! route('admin.companies.create') !!}" class="btn btn-primary btn-flat">Add new</a>
             <table id="companies" class="table table-bordered table-hover">
                 <thead>
                     <tr>
