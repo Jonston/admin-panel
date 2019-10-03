@@ -149,13 +149,7 @@ desired effect
         </section>
 
         <!-- Main content -->
-        <section class="content container-fluid">
-
-            <!--------------------------
-              | Your Page Content Here |
-              -------------------------->
-
-        </section>
+        <section class="content container-fluid">@yield('content')</section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -253,9 +247,6 @@ desired effect
 
 <!-- AdminLTE App -->
 <script src="/js/app.js"></script>
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+@yield('script')
 </body>
 </html>

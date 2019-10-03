@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -13,7 +14,11 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return 'company list test';
+        $companies = DB::table('company')->simplePaginate(10);
+
+        return view('admin/companies/list', [
+            'companies' => $companies
+        ]);
     }
 
     /**
