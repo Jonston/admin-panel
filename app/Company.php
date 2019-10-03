@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Company extends Model
 {
@@ -12,4 +13,12 @@ class Company extends Model
         'logo',
         'website'
     ];
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($company) {
+            Storage::delete('public/' . $company->logo);
+        });
+    }
 }

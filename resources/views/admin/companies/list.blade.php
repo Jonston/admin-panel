@@ -15,6 +15,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Website</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,13 @@
                         <td>{!! $company->name !!}</td>
                         <td>{!! $company->email !!}</td>
                         <td>{!! $company->website !!}</td>
+                        <td class="text-center">
+                            <form action="{!! route('admin.companies.destroy', $company->id) !!}" method="post">
+                                @csrf
+                                <input type="hidden" name="_method" value="delete">
+                                <button class="btn btn-sm btn-danger">delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>

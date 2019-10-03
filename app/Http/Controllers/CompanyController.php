@@ -55,7 +55,7 @@ class CompanyController extends Controller
 
         $company->save();
 
-        return redirect(route('admin/companies'));
+        return redirect(route('admin.companies.index'));
     }
 
     /**
@@ -100,6 +100,8 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Company::destroy($id);
+
+        return redirect(route('admin.companies.index'));
     }
 }
