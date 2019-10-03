@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\Http\Requests\StoreCompanyRequest;
+use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
+
+    use UploadTrait;
     /**
      * Display a listing of the resource.
      *
@@ -34,10 +38,24 @@ class CompanyController extends Controller
 
     /**
      * @param StoreCompanyRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(StoreCompanyRequest $request)
     {
-        dd($request->post());
+        $company = new Company();
+        $company->fill($request->only('name', 'email', 'website'));
+
+        if ($request->has('logo')) {
+            $file = $this->uploadFile($request->file('logo'));
+
+            $this->resizeImage(storage_path('app/public/' . $file));
+
+            $company->logo = $file;
+        }
+
+        $company->save();
+
+        return redirect(route('admin/companies'));
     }
 
     /**

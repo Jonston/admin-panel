@@ -9,7 +9,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{!! route('admin.companies.store') !!}" method="post">
+            <form role="form" action="{!! route('admin.companies.store') !!}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="box-body">
                     <div class="form-group @if($errors->has('name')) has-error @endif">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group @if($errors->has('logo')) has-error @endif">
                         <label for="logo">File input</label>
-                        <input type="file" id="logo" name="file" value="{!! old('logo') !!}">
+                        <input type="file" id="logo" name="logo" value="{!! old('logo') !!}">
                         @error('logo')
                         <span class="help-block">{{ $message }}</span>
                         @enderror
