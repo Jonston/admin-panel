@@ -27,4 +27,6 @@ Route::group([
     'middleware' => ['auth']
 ], function(){
     Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'AdminController@index']);
+
+    Route::resource('company', 'CompanyController');
 });
