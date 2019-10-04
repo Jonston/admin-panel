@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCompanyRequest;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -33,7 +34,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('admin/companies/form');
+        return view('admin/companies/create');
     }
 
     /**
@@ -45,28 +46,14 @@ class CompanyController extends Controller
         $company = new Company();
         $company->fill($request->only('name', 'email', 'website'));
 
-        if ($request->has('logo')) {
-            $file = $this->uploadFile($request->file('logo'));
+        $file = $this->storeImage();
 
-            $this->resizeImage(storage_path('app/public/' . $file));
-
+        if($file)
             $company->logo = $file;
-        }
 
         $company->save();
 
         return redirect(route('admin.companies.index'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -77,19 +64,51 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::find($id);
+
+        return view('admin.companies.edit', [
+            'company' => $company
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        //
+        $company = Company::find($id);
+        $company->fill($request->only('name', 'email', 'website'));
+
+        $file = $this->storeImage();
+
+        if($file){
+            Storage::disk('public')->delete($company->logo);
+
+            $company->logo = $file;
+        }
+
+        $company->save();
+
+        return redirect(route('admin.companies.index'));
+    }
+
+    /**
+     * @return bool|string
+     */
+    public function storeImage()
+    {
+        if (request()->has('logo')) {
+
+            $file = $this->resizeImage(
+                $this->uploadFile(request()->file('logo'))
+            );
+
+            return $file;
+        }
+
+        return false;
     }
 
     /**

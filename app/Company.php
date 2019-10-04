@@ -18,7 +18,7 @@ class Company extends Model
         parent::boot();
 
         static::deleting(function($company) {
-            Storage::delete('public/' . $company->logo);
+            Storage::delete($company->logo);
         });
     }
 }

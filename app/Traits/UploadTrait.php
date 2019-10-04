@@ -3,36 +3,24 @@
 namespace App\Traits;
 
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Str;
 use Spatie\Image\Image;
 
 trait UploadTrait
 {
     /**
-     * @param UploadedFile $uploadedFile
-     * @param null $filename
-     * @return false|string
+     * @param UploadedFile $file
+     * @return UploadedFile
      */
-    public function uploadFile(UploadedFile $uploadedFile, $filename = null)
+    public function uploadFile(UploadedFile $file)
     {
-        $name = ! is_null($filename) ? $filename : Str::random(25);
-
-        $today = today();
-
-        $folder = '/uploads/' . $today->year . '/' . $today->month . '/';
-
-        $file = $uploadedFile->storeAs(
-            $folder,
-            $name . '.' . $uploadedFile->getClientOriginalExtension(),
-            'public'
-        );
+        $file = $file->store('uploads', 'public');
 
         return $file;
     }
 
     public function resizeImage($image, $width = 100, $height = 100)
     {
-        $image = Image::load($image)
+        Image::load(storage_path('app/public/' . $image))
             ->width($width)
             ->height($height)
             ->save();
