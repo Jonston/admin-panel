@@ -83,7 +83,7 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, $id)
     {
-        $company = Company::find($id);
+        $company = Company::findOrFail($id);
         $company->fill($request->only('name', 'email', 'website'));
 
         $file = $this->storeImage();
