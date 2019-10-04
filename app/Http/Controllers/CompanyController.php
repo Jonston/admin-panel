@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Requests\StoreCompanyRequest;
+use App\Mail\CreateCompany;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
@@ -52,6 +54,10 @@ class CompanyController extends Controller
             $company->logo = $file;
 
         $company->save();
+
+        Mail::to('jonston@list.ru')->send(new CreateCompany($company));
+
+        dd(1);
 
         return redirect(route('admin.companies.index'));
     }
