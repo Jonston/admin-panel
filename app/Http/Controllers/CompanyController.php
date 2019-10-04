@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Requests\StoreCompanyRequest;
+use App\Http\Requests\UpdateCompanyRequest;
 use App\Mail\CreateCompany;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
@@ -57,8 +58,6 @@ class CompanyController extends Controller
 
         Mail::to('jonston@list.ru')->send(new CreateCompany($company));
 
-        dd(1);
-
         return redirect(route('admin.companies.index'));
     }
 
@@ -78,11 +77,11 @@ class CompanyController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdateCompanyRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCompanyRequest $request, $id)
     {
         $company = Company::find($id);
         $company->fill($request->only('name', 'email', 'website'));
