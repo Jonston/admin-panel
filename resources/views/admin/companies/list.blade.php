@@ -1,13 +1,18 @@
 @extends('layouts/admin')
 
 @section('content')
+    @if(session('success'))
+        <div class="callout callout-success">
+            <h4 style="margin: 0">{!! session('success') !!}</h4>
+        </div>
+    @endif
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Hover Data Table</h3>
+            <h3 class="box-title">Companies list</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <a href="{!! route('admin.companies.create') !!}" class="btn btn-primary btn-flat">Add new</a>
+            <a href="{!! route('admin.companies.create') !!}" class="btn btn-success btn-flat">Add new</a>
             <table id="companies" class="table table-bordered table-hover">
                 <thead>
                     <tr>

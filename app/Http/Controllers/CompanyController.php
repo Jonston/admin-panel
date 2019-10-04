@@ -58,7 +58,7 @@ class CompanyController extends Controller
 
         Mail::to('jonston@list.ru')->send(new CreateCompany($company));
 
-        return redirect(route('admin.companies.index'));
+        return redirect(route('admin.companies.index'))->with('success', 'Company successfully created!');
     }
 
     /**
@@ -96,7 +96,7 @@ class CompanyController extends Controller
 
         $company->save();
 
-        return redirect(route('admin.companies.index'));
+        return redirect(route('admin.companies.index'))->with('success', 'Company successfully updated!');
     }
 
     /**

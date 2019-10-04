@@ -53,7 +53,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-        return redirect(route('admin.employees.index'));
+        return redirect(route('admin.employees.index'))->with('success', 'Company successfully created!');
     }
 
     /**
@@ -90,7 +90,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-        return redirect(route('admin.employees.index'));
+        return redirect(route('admin.employees.index'))->with('success', 'Company successfully updated!');
     }
 
     /**
