@@ -129,9 +129,14 @@ desired effect
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">Menu</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active">
-                    <a href="#">
-                        <i class="fa fa-link"></i> <span>Link</span>
+                <li class="@if(\Request::is('admin/companies') || \Request::is('admin/companies/*')) active @endif">
+                    <a href="{!! route('admin.companies.index') !!}">
+                        <i class="fa fa-building"></i> <span>Companies</span>
+                    </a>
+                </li>
+                <li class="@if(\Request::is('admin/employees') || \Request::is('admin/employees/*')) active @endif">
+                    <a href="{!! route('admin.employees.index') !!}">
+                        <i class="fa fa-user-circle"></i> <span>Employees</span>
                     </a>
                 </li>
             </ul>
