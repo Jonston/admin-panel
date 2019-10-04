@@ -77,3 +77,5 @@
         });
     </script>
 @endsection
+
+@section('title') Companies list @endsection

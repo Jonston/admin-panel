@@ -71,3 +71,5 @@
         });
     </script>
 @endsection
+
+@section('title') Employees list @endsection

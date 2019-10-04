@@ -5,7 +5,7 @@
         <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Edit company</h3>
+                <h3 class="box-title">Edit employee</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -66,3 +66,5 @@
         <!-- /.box -->
     </div>
 @endsection
+
+@section('title') Edit employee @endsection
