@@ -13,7 +13,7 @@
         <!-- /.box-header -->
         <div class="box-body">
             <a href="{!! route('admin.employees.create') !!}" class="btn btn-success btn-flat">Add new</a>
-            <table id="companies" class="table table-bordered table-hover">
+            <table id="employees" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -21,7 +21,7 @@
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th colspan="2" width="10%" class="text-center">Action</th>
+                        <th width="10%" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,9 +33,9 @@
                         <td>{!! $employee->email !!}</td>
                         <td>{!! $employee->phone !!}</td>
                         <td class="text-center">
-                            <a href="{!! route('admin.employees.edit', $employee->id) !!}" class="d-inline-block btn btn-sm btn-primary">Edit</a>
-                        </td>
-                        <td class="text-center">
+                            <a href="{!! route('admin.employees.edit', $employee->id) !!}"
+                               class="d-inline-block btn btn-sm btn-primary">Edit</a>
+
                             <form action="{!! route('admin.employees.destroy', $employee->id) !!}" method="post" class="d-inline-block">
                                 @csrf
                                 <input type="hidden" name="_method" value="delete">
@@ -60,13 +60,23 @@
 @section('script')
     <script>
         $(function () {
-            $('#companies').DataTable({
+            $('#employees').DataTable({
                 'paging'      : false,
                 'lengthChange': false,
                 'searching'   : false,
                 'ordering'    : true,
                 'info'        : false,
-                'autoWidth'   : false
+                'autoWidth'   : false,
+                'columns'     : [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    {
+                        orderable: false
+                    }
+                ]
             });
         });
     </script>

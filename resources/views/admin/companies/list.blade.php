@@ -21,7 +21,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Website</th>
-                        <th colspan="2" width="10%" class="text-center">Action</th>
+                        <th width="10%" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,9 +39,9 @@
                         <td>{!! $company->email !!}</td>
                         <td>{!! $company->website !!}</td>
                         <td class="text-center">
-                            <a href="{!! route('admin.companies.edit', $company->id) !!}" class="d-inline-block btn btn-sm btn-primary">Edit</a>
-                        </td>
-                        <td class="text-center">
+                            <a href="{!! route('admin.companies.edit', $company->id) !!}"
+                               class="d-inline-block btn btn-sm btn-primary">Edit</a>
+
                             <form action="{!! route('admin.companies.destroy', $company->id) !!}" method="post" class="d-inline-block">
                                 @csrf
                                 <input type="hidden" name="_method" value="delete">
@@ -65,14 +65,24 @@
 
 @section('script')
     <script>
-        $(function () {
+        $(document).ready(e => {
             $('#companies').DataTable({
                 'paging'      : false,
                 'lengthChange': false,
                 'searching'   : false,
                 'ordering'    : true,
                 'info'        : false,
-                'autoWidth'   : false
+                'autoWidth'   : false,
+                'columns'     : [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    {
+                        orderable: false
+                    }
+                ]
             });
         });
     </script>
