@@ -15,13 +15,13 @@
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
+        "sass": "^1.23.7",
         "sass-loader": "^7.1.0",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
         "admin-lte": "^2.4.18",
-        "bootstrap": "^4.3.1",
+        "bootstrap": "^4.4.1",
         "icheck": "^1.0.2",
         "jquery": "^3.4.1"
     }
