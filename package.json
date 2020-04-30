@@ -23,6 +23,6 @@
         "admin-lte": "^2.4.18",
         "bootstrap": "^4.4.1",
         "icheck": "^1.0.2",
-        "jquery": "^3.4.1"
+        "jquery": "^3.5.0"
     }
 }
